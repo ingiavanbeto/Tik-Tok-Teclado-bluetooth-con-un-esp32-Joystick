@@ -294,7 +294,6 @@ void loop() {
 | Problema | Causa probable | Solución |
 | :--- | :--- | :--- |
 | `BleKeyboard.h: No such file or directory` | Falta la librería | Instala **NimBLE-Arduino** y **HijelHID_BLEKeyboard** (ver arriba) |
-| `cannot convert 'std::string' to 'String'` en `BleKeyboard.cpp` | Librería T-vK vieja con core 3.3.12 | **No uses T-vK.** Usa el código de este repo, con `HijelHID_BLEKeyboard.h` |
 | No aparece `ESP32-WROOM-Media` en Bluetooth | Ya está conectado a otro dispositivo, o no se subió el código | Desconéctalo del celular, presiona RST en el ESP32 y busca de nuevo |
 | El volumen sube solo / se dispara solo | Centro del joystick no está en 2048 | Revisa la zona muerta (1000-3100) o calibra tu joystick en el Monitor Serie |
 | Arriba baja el volumen (al revés) | Orientación del módulo | Intercambia las líneas de `MEDIA_VOLUME_UP` y `MEDIA_VOLUME_DOWN` en el código |
