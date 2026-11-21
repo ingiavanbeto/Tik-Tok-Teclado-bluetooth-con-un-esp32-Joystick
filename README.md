@@ -147,14 +147,6 @@ flowchart TD
     J --> A
     L --> A
 ```
-
-### 3. Volumen se repite, canciones no
-
-Hay un detalle importante en el código:
-
-- **Volumen:** se repite cada **180 ms** mientras mantienes el joystick empujado. Así sube poco a poco, como un control remoto.
-- **Siguiente / anterior y Play/Pausa:** se envían **una sola vez por empujón**. El código espera a que el joystick vuelva al centro antes de aceptar otro. Si no, con un solo empujón te saltaría 5 canciones.
-
 ---
 
 ## ⚠️ PRIMERO: instala estas 2 librerías (en este orden)
@@ -176,19 +168,6 @@ Hay un detalle importante en el código:
 3. Autor: **hijelhub**
 4. Dale a **Instalar**.
 
-### ❌ ¿Por qué NO la librería clásica de T-vK?
-
-La librería clásica **"ESP32 BLE Keyboard" de T-vK** es la que sale primero en el buscador, pero **NO compila con el core ESP32 3.3.12**:
-
-```
-BleKeyboard.cpp:106: error: cannot convert 'std::string' to 'String'
-BLEDevice::init(deviceName);
-```
-
-Ese error está dentro de la librería vieja, no en tu código. El core 3.x cambió `BLEDevice::init()` para esperar un `String` de Arduino y la librería T-vK todavía le pasa un `std::string`.
-
-**HijelHID_BLEKeyboard está hecha para el core 3.x y usa NimBLE**, por eso es la que funcionó al final. No necesitas desinstalar la T-vK, solo deja de incluirla.
-
 ---
 
 ## 💻 Instalación y carga del código
@@ -199,13 +178,7 @@ Ese error está dentro de la librería vieja, no en tu código. El core 3.x camb
 - **Core ESP32 3.3.12** instalado *(Herramientas > Placa > Gestor de tarjetas > busca `esp32` de Espressif)*
 - Las 2 librerías de arriba, en ese orden
 
-### Configuración de la placa
 
-| Ajuste | Valor |
-| :--- | :--- |
-| Placa | **DOIT ESP32 DEVKIT V1** o **ESP32 Dev Module** |
-| Puerto | El puerto COM / USB de tu ESP32 |
-| Upload Speed | 921600 *(o 115200 si te falla la carga)* |
 
 ### Pasos
 
@@ -328,14 +301,6 @@ void loop() {
 | No compila `HijelHID_BLEKeyboard.h` | Falta NimBLE o versión vieja | Instala **primero** NimBLE-Arduino **2.3.8 o mayor**, luego HijelHID |
 
 ---
-
-## 🚀 Ideas para ampliarlo
-
-- [ ] Agregar **mute** al mantener pulsado el joystick 1 segundo
-- [ ] Poner un **OLED** que muestre volumen / canción / estado de conexión
-- [ ] Usar el joystick como **mouse** (mover el cursor con X/Y, clic con SW)
-- [ ] Alimentarlo con batería LiPo + TP4056 para hacerlo portátil
-- [ ] Agregar un segundo joystick o botones para adelantar / atrasar 10 s en YouTube
 
 ---
 
